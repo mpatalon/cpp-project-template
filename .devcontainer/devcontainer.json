@@ -1,0 +1,34 @@
+{
+  "name": "vsc-gcc:latest",
+
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "USERNAME": "developer",
+      "HOME": "/home/developer",
+      "DOCKER_VOLUME": "/home/developer/volume",
+    }
+  },
+
+  "containerUser": "developer",
+
+  "runArgs": [
+    "--hostname=gcc",
+    "--cap-add=SYS_PTRACE",
+    "--security-opt",
+    "seccomp=unconfined"
+  ],
+
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+
+  "extensions": [
+    "ms-vscode.cmake-tools",
+    "ms-vscode.cpptools"
+  ],
+
+  "mounts": [
+    "source=cpp-project-template-volume,target=/home/developer/volume,type=volume"
+  ]
+}
