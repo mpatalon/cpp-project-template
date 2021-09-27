@@ -1,11 +1,15 @@
 #ifndef COMMON_COMMON_H_
 #define COMMON_COMMON_H_
 
+#include <string>
+
 namespace common {
 
 struct Common
 {
-  int field = 0;
+  Common(std::string name) : name(name) {}
+
+  std::string name;
 };
 
 }  // namespace common

@@ -30,8 +30,13 @@
   },
 
   "extensions": [
+    "alefragnani.bookmarks",
+    "davidanson.vscode-markdownlint",
     "ms-vscode.cmake-tools",
-    "ms-vscode.cpptools"
+    "ms-vscode.cpptools",
+    "ms-vscode.cpptools-themes",
+    "timonwong.shellcheck",
+    "twxs.cmake"
   ],
 
   "mounts": [

@@ -5,7 +5,7 @@
 
 namespace module {
 
-int module_function(common::Common argument);
+bool module_function(common::Common common, std::string name);
 
 }  // namespace module
 

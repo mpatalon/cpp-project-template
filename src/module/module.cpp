@@ -1,11 +1,11 @@
-
+#include <string>
 #include "cpp-project-template/module/module.h"
 
 namespace module {
 
-int module_function(common::Common argument)
+bool module_function(common::Common common, std::string name)
 {
-  return argument.field;
+  return common.name == name;
 }
 
 }  // namespace module
