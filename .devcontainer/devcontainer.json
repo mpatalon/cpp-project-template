@@ -36,7 +36,7 @@
     "ms-vscode.cpptools",
     "ms-vscode.cpptools-themes",
     "timonwong.shellcheck",
-    "twxs.cmake"
+    "eamodio.gitlens"
   ],
 
   "mounts": [
