@@ -1,12 +1,12 @@
 {
-  "name": "vsc-gcc:latest",
+  "name": "vsc-gcc-15",
 
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
       "USERNAME": "developer",
       "HOME": "/home/developer",
-      "DOCKER_VOLUME": "/home/developer/volume",
+      "DOCKER_VOLUME": "/home/developer/volume"
     }
   },
 
@@ -19,25 +19,28 @@
     "seccomp=unconfined"
   ],
 
-  "settings": {
-    "terminal.integrated.profiles.linux": {
-      "bash": {
-        "path": "/bin/bash",
-        "args": ["-l"]
-      }
-    },
-    "terminal.integrated.defaultProfile.linux": "bash"
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "args": ["-l"]
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "alefragnani.bookmarks",
+        "davidanson.vscode-markdownlint",
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-themes",
+        "timonwong.shellcheck",
+        "eamodio.gitlens"
+      ]
+    }
   },
-
-  "extensions": [
-    "alefragnani.bookmarks",
-    "davidanson.vscode-markdownlint",
-    "ms-vscode.cmake-tools",
-    "ms-vscode.cpptools",
-    "ms-vscode.cpptools-themes",
-    "timonwong.shellcheck",
-    "eamodio.gitlens"
-  ],
 
   "mounts": [
     "source=cpp-project-template-volume,target=/home/developer/volume,type=volume"

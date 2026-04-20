@@ -1,16 +1,20 @@
+FROM gcc:15-trixie
 
-FROM gcc:latest
+LABEL maintainer="mpatalon"
+LABEL description="C++ development container with GCC"
 
-ARG USERNAME
-ARG HOME
-ARG DOCKER_VOLUME
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-ENV USERNAME ${USERNAME}
-ENV HOME ${HOME}
-ENV DOCKER_VOLUME ${DOCKER_VOLUME}
+ARG USERNAME=developer
+ARG HOME=/home/developer
+ARG DOCKER_VOLUME=/home/developer/volume
 
-ENV USER_UID 1000
-ENV USER_GID ${USER_UID}
+ENV USERNAME=${USERNAME}
+ENV HOME=${HOME}
+ENV DOCKER_VOLUME=${DOCKER_VOLUME}
+
+ENV USER_UID=1000
+ENV USER_GID=${USER_UID}
 
 ENV TZ=Europe/Warsaw
 
@@ -20,18 +24,20 @@ RUN export DEBIAN_FRONTEND=noninteractive \
   && apt-get -y install \
     apt-utils \
     build-essential \
+    ccache \
     clang-format \
+    clang-tidy \
     cmake \
     cppcheck \
     curl \
-    dos2unix \
     file \
+    gdb \
     git \
     jq \
     lcov \
-    openssl \
+    ninja-build \
+    pkg-config \
     sudo \
-    telnet \
     valgrind \
     vim \
   && apt-get autoremove -y \
@@ -41,14 +47,11 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 RUN \
   groupadd --gid ${USER_GID} ${USERNAME} \
   && useradd --uid ${USER_UID} --gid ${USERNAME} --shell /bin/bash --create-home ${USERNAME} \
-  && usermod --password $(echo ${USERNAME} | openssl passwd -1 -stdin) ${USERNAME} \
-  \
   && usermod -aG sudo ${USERNAME} \
   && echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME} \
   && chmod 0440 /etc/sudoers.d/${USERNAME}
 
-ENV DOCKER_VOLUME ${HOME}/volume
-ENV PROMPT_COMMAND 'history -a'
+ENV PROMPT_COMMAND='history -a'
 
 RUN \
   mkdir -p \
